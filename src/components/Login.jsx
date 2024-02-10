@@ -97,7 +97,7 @@ const Login = (props) => {
             </form>
             {
                 redirectHome &&
-                <Navigate replace to="/" />
+                <Navigate replace to="/profile" />
             }
         </div>
     );
