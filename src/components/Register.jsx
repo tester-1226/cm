@@ -11,6 +11,7 @@ import { message } from 'antd';
 import Cookies from 'js-cookie';
 
 const Register = (props) => {
+    const navigate = useNavigate();
     const secretPass = "XkhZG4fW2t2W";
     const [username, setUsername] = useState('');
     const [email, setEmail] = useState(''); 
@@ -73,7 +74,7 @@ const Register = (props) => {
             <form className = "form-wrapper" onSubmit={handleFormSubmit}>
             <div className = "form">
                     <div className = "form-padding">
-                        <div className = "form-logo">
+                        <div className = "form-logo" onClick={(e) => navigate("/")}>
                             <span className = "community">
                                 Community
                             </span>
