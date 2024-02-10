@@ -10,8 +10,15 @@ const Profile = (props) => {
                 </button>
             </div>
 
-            <div align = "left">
-               
+            <div align = "Center">
+                <h4>
+                    Email:
+                </h4>
+            </div>
+
+
+            <div align = "center">
+
             </div>
         </div>
     );
