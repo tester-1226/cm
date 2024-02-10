@@ -111,8 +111,9 @@
 .info .middle{
     flex-grow: 1;
     margin-left:5px;
-    max-height: 101px;
-    overflow-y:hidden;
+    max-height: 97px;
+    overflow-y: scroll;
+    scrollbar-gutter: stable;
 }
 
 .info .bottom{
@@ -120,4 +121,8 @@
     margin-left: 20px;
     color:var(--tertiary);
     margin-top: 10px;
+}
+
+.section::-webkit-scrollbar {
+    display: none;
 }

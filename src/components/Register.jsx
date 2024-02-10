@@ -8,6 +8,7 @@ import { db } from '../firebase_setup/firebase.js';
 import { ref, push } from "firebase/database";
 import CryptoJS from 'crypto-js'; 
 import { message } from 'antd';
+import Cookies from 'js-cookie';
 
 const Register = (props) => {
     const secretPass = "XkhZG4fW2t2W";
