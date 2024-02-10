@@ -37,7 +37,6 @@ const Login = (props) => {
 
                 const user = userCredential.user;
                 //props.changeLoginState(true, user.uid)
-                console.log(user.uid);
                 console.log("Signed in as " + user.email)
             })
             .catch((error) => {
