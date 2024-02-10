@@ -1,10 +1,17 @@
 import React, { useState, useEffect } from 'react';
+import { database } from '../../firebase_setup/firebase.js'
+import { ref, push, child, update } from "firebase/database";
+import { getAuth, createUserWithEmailAndPassword, sendEmailVerification } from "firebase/auth";
+import { message, Form, Input, Checkbox, Button } from 'antd';
 import { Navigate } from 'react-router-dom';
 import { useNavigate } from "react-router-dom";
 import { genericFetch } from './datafetch';
 import '../css/form.css';
 
+import CryptoJS from 'crypto-js'; 
+
 const Register = (props) => {
+    const secretPass = "XkhZG4fW2t2W";
     const [username, setUsername] = useState('');
     const [email, setEmail] = useState(''); 
     const [password, setPassword] = useState(''); 
@@ -23,18 +30,35 @@ const Register = (props) => {
         }
     }, [confirm, password]);
 
-    const handleFormSubmit = (e) => {
+    const handleFormSubmit = (e) => 
+    {
         e.preventDefault();
-        if(error) return;
-        genericFetch(
-            "GET",
-            "http://localhost:8080/api/v1/customer/info?email="+username,
-            {}
-        ).then(resp => {
-            
-        })
+        let obj = 
+        {
+            uid: '',
+            name: values.name,
+            phone: values.phone,
+            email: values.email,
+            password: values.password
+        }
+        const updates = {};
+        const auth = getAuth();
+        //encryot password,ccn1,ccn1expdate
+        obj.password = CryptoJS.AES.encrypt(obj.password, secretPass).toString();
+        updates['users/' + auth.currentUser.uid] = obj;
+        createUserWithEmailAndPassword(auth, obj["email"], values["password"])
+            .then((userCredential) => {
+                const user = userCredential.user;
+                message.success("Registration success!")
+                obj["uid"] = user.uid;
+            }
+        // if(error) return;
+        // genericFetch(
+        //     "GET",
+        //     "http://localhost:8080/api/v1/customer/info?email="+username,
+        //     {}
+        // )
     }
-
     return (
         <div>
             <form className = "form-wrapper" onSubmit={handleFormSubmit}>
