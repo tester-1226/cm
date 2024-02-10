@@ -104,8 +104,9 @@ const Register = (props) => {
                         </div>
                         <div className = "form-section">
                             <div className = "form-input-wrapper">
-                                <input className="form-input" type="text" placeholder="Password" name="email"
+                                <input className="form-input" type="password" placeholder="Password" name="password"
                                 required
+                                
                                 value = {password}
                                 onChange = {(e) => setPassword(e.target.value)}
                                 ></input>
@@ -115,7 +116,7 @@ const Register = (props) => {
                         </div>
                         <div className = "form-section">
                             <div className = "form-input-wrapper">
-                                <input className="form-input" type="text" placeholder="Confirm Password" name="email"
+                                <input className="form-input" type="password" placeholder="Confirm Password" name="confirm Password"
                                 required
                                 value = {confirm}
                                 onChange = {(e) => setConfirm(e.target.value)}
