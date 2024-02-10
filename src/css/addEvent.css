@@ -20,3 +20,7 @@
     border-radius: 10px;
     margin-top: 50px;
 }
+
+.form-resize {
+    resize:none 
+}

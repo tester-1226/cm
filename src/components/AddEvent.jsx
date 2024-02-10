@@ -1,39 +1,46 @@
 import React from 'react'
-
+import '../css/addEvent.css'
+import Navbar from './Navbar';
 const AddEvent = (props) => {
     return (
-        <div>
+        <div align = "center">
+            <h1>
+                Create An Event
+            </h1>
             <div>
-                <form>
-                    <label for="img">Event Picture:</label>
-                    <input type="file" id="img" name="img" accept="image/*"></input>
-                    <input type="submit"></input>
-                </form>
+                <label for="eventName">Event name:</label>
+                <input type="text" id="eventName" name="eventName"></input>
             </div>
+            <br>
+            </br>
             <div>
-                <form>
-                    <br>
-                        <label for="firstName">Event name:</label>
-                        <input type="text" id="eventName" name="eventName"></input>
-                    </br>
-                    <br>
-                    <label for="freeform">Description of Event:</label>
-                    </br>
-                    <br>
-                    <textarea id="freeform" name="freeform" rows="4" cols="50">
-                    </textarea>
-                    </br>
-                    <br>
-                        <label for="firstName">Event Date:</label>
-                        <input type="date" name="eventDate"></input>
-                    </br>
-                    <br>
-                        <label for="firstName">Event Time:</label>
-                        <input type="time" name="eventTime"></input>
-                    </br>
-                    <input type="submit" value="Create Event"> </input>
-                </form>             
+                <label for="location">Location:</label>
+                <input type="text" id="eventLocation" name="eventLocation"></input>
             </div>
+            <br>
+            </br>
+            <div>
+                <label for="userName">Username:</label>
+                <input type="text" id="userName" name="userName"></input>
+                <label for="date">Date:</label>
+                <input type="date" name="eventDate"></input>
+                <label for="time">Time:</label>
+                <input type="time" name="eventDate"></input>
+            </div>
+            <br>
+            </br>
+            <div>
+                <label>
+                    ≈ç
+                </label>
+            </div>
+            <br>
+            </br>
+            <div align = "center">
+                <button class="form-createEvent-button">Create Event</button>
+             </div>
+
+            
         </div>
 
     );
