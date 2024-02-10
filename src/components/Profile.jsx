@@ -5,13 +5,14 @@ import { database } from '../firebase_setup/firebase.js';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { auth } from '../firebase_setup/firebase';
 import Cookies from 'js-cookie';
+import Navbar from './Navbar';
 
 const Profile = (props) => {
     const [user, loading, error] = useAuthState(auth);
 
     useEffect(() => {
         if (user) {
-            const dbRef = ref(getDatabase());
+            //const dbRef = ref(getDatabase());
             const userID = user.uid;
             get(child(dbRef, `users/${userID}`)).then((snapshot) => {
                 if (snapshot.exists()) {
@@ -37,6 +38,7 @@ const Profile = (props) => {
 
     return (
         <div>
+            <Navbar />
             <div align="center">
                 <button className="form-larger-button">
                     Upload your pfp

@@ -1,8 +1,11 @@
 import React from 'react'
+import Navbar from './Navbar';
 
 const Events = (props) => {
     return (
-        <div>Events</div>
+        <div>
+            <Navbar />
+        </div>
     );
 }
 

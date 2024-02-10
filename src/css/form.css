@@ -2,12 +2,23 @@
 @import url("https://fonts.googleapis.com/css?family=Archivo+Black:100,200,300,400,500,600,700,800,900");
 
 :root{
-    --background: #359433;
-    --foreground: #ebf8f7;
-    --background-bold: #4cc162;
-    --foreground-bold: #b6e6d5;
-    --accent: #be2727;
-    --accent-complement: #10DDEF;
+    --primary: #415f91;
+    --secondary: #565f71;
+    --tertiary: #705575; 
+    --error: #ba1a1a;
+    --background: #ffffff;
+    --primary-container: #d6e3ff;
+    --secondary-container: #dae2f9;
+    --tertiary-container: #fad8fd;
+    --error-container: #ffdad6;
+    --primary-background: #001b3e;
+    --secondary-background: #131c2b;
+    --tertiary-background: #28132e;
+    --error-background: #410002;
+}
+
+body{
+    background: #f2f2f2;
 }
 
 .form-wrapper{
