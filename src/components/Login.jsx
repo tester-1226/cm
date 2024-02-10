@@ -3,8 +3,18 @@ import '../css/form.css';
 
 const Login = (props) => {
     return (
-        <div>
-            <div class = "form-section">
+        <div class = "form-wrapper">
+           <div class = "form">
+                <div class = "form-padding">
+                    <div class = "form-logo">
+                        <span class = "community">
+                            Community
+                        </span>
+                        <span class = "heros">
+                            Heroes
+                        </span>
+                    </div>
+                    <div class = "form-section">
                 <div class = "form-input-wrapper">
                     <input class="form-input" type="text" placeholder="Email" name="email"></input>
                     <span class = "form-input-focus-border"></span>
@@ -20,6 +30,8 @@ const Login = (props) => {
             </div>
             <div class = "form-section">
                     <button class = "form-large-button">Login</button>
+            </div>
+                </div>
             </div>
         </div>
     );
