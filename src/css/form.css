@@ -1,0 +1,122 @@
+@import url("https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900");
+@import url("https://fonts.googleapis.com/css?family=Archivo+Black:100,200,300,400,500,600,700,800,900");
+
+.form-wrapper{
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    background: #f2f2f2;
+}
+
+.form{
+    width: 390px;
+    background: #fff;
+    border-radius: 10px;
+    overflow: hidden;
+    padding: 77px 55px 33px;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+}
+
+.form-padding{
+    text-align: center;
+}
+
+.form-logo .community{
+    font-family: "Poppins", sans-serif;
+    font-size: 20px;
+}
+
+.form-logo .heros{
+    font-family: "Archivo Black", sans-serif;
+    font-size: 20px;
+}
+
+.form-section{
+    margin-top: 30px;
+}
+
+.form-input-wrapper{
+    position: relative;
+    width: 100%;
+}
+
+.form-input{
+    font-family: "Poppins", sans-serif;
+    font-size: 15px;
+    color: #555;
+    line-height: 1.2;
+    display: block;
+    width: 100%;
+    height: 45px;
+    background: 0 0;
+    padding: 0 5px;
+    border:none;
+    box-sizing: border-box;
+    position: relative;
+}
+
+.form-input-focus-border{
+    z-index: 2;
+}
+
+.form-input ~ .form-input-focus-border-reverse{
+    position: absolute;
+    bottom: 0px; 
+    left: 0px; 
+    width: 100%; 
+    height: 2px; 
+    background-color: #999; 
+    transition: 0.5s;
+}
+
+.form-input ~ .form-input-focus-border{
+    position: absolute;
+    bottom: 0px; 
+    left: 0px; 
+    width: 0px; 
+    height: 2px; 
+    background: -webkit-linear-gradient(right,#fde721,#b721ff);
+    transition: 0.5s;
+}
+
+.form-input:focus ~ .form-input-focus-border{
+    width: 100%;
+    transition: 0.5s; 
+}
+
+
+*:focus {
+    outline: none;
+}
+
+button {
+    outline: none!important;
+    border: none;
+    background: 0 0;
+    cursor: pointer;
+}
+
+.form-large-button{
+    font-family: "Poppins", sans-serif;
+    font-size: 15px;
+    color: #fff;
+    line-height: 1.2;
+    text-transform: uppercase;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0 20px;
+    width: 100%;
+    height: 50px;
+    border-radius: 10px;
+    background: -webkit-linear-gradient(right,#fde721,#b721ff);
+    margin-top: 50px;
+    
+}
