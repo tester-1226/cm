@@ -1,152 +1,147 @@
-import React, { useState, useEffect } from 'react';
-import { Navigate } from 'react-router-dom';
-import { useNavigate } from "react-router-dom";
-import { genericFetch } from './datafetch';
+import React, { useState, setState } from 'react';
+import { db } from '../firebase_setup/firebase.js'
+import { ref, push, child, update } from "firebase/database";
+import { getAuth, createUserWithEmailAndPassword, sendEmailVerification } from "firebase/auth";
+import { message, Form, Input, Checkbox, Button } from 'antd';
 import '../css/form.css';
-import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
-import { db } from '../firebase_setup/firebase.js';
-import { ref, push } from "firebase/database";
+// import bcrypt from 'bcryptjs';
 import CryptoJS from 'crypto-js'; 
-import { message } from 'antd';
-import Cookies from 'js-cookie';
-
-const Register = (props) => {
-    const navigate = useNavigate();
+function Register() {
     const secretPass = "XkhZG4fW2t2W";
-    const [username, setUsername] = useState('');
-    const [email, setEmail] = useState(''); 
-    const [password, setPassword] = useState(''); 
-    const [confirm, setConfirm] = useState(''); 
-    const [error, setError] = useState(false);
-    const [redirectHome, setRedirectHome] = useState(false);
-    const [emsg, setEmsg] = useState(''); 
-
-    useEffect(() => {
-        if(password !== confirm){
-            setError(true);
-            setEmsg("Passwords Must Match");
-        } else {
-            setError(false);
+    const handleSubmit = (e) => {
+        let obj = {
+            uid: '',
+            name: e.name,
+            email: e.email,
+            password: e.password,
         }
-    }, [confirm, password]);
 
-    const handleFormSubmit = (e) => {
-        e.preventDefault();
-
-        // Encrypt password
-        const encryptedPassword = CryptoJS.AES.encrypt(password, secretPass).toString();
-
-        // Create user in Firebase Authentication
+        // worst line of code i've ever written in my life
+        if (obj["isSubscribedToPromotions"] != true) obj["isSubscribedToPromotions"] = false
+        //console.log(e)
+        //console.log(obj) 
+        debugger;
+        //const newPostKey = push(child(ref(database), 'posts')).key;
+        const updates = {};
         const auth = getAuth();
-        createUserWithEmailAndPassword(auth, email, password)
+        //encryot password,ccn1,ccn1expdate
+        obj.password = CryptoJS.AES.encrypt(obj.password, secretPass).toString();
+        console.log(obj)
+
+        createUserWithEmailAndPassword(auth, obj["email"], e["password"])
             .then((userCredential) => {
                 const user = userCredential.user;
-                database.ref('user/' + userId).set({
-                    name: username,
-                    email: email,
-                    password: encryptedPassword
-                });
-
-                // Push user data to Firebase Realtime Database
-                const dbRef = ref(db);
-                push(ref(db), userData)
-                .then(() => {
-                    console.log("User data added to the database");
-                    // If you want to redirect after successful registration
-                    setRedirectHome(true);
-                })
-                .catch((error) => {
-                    console.error("Error adding user data to the database: ", error);
-                });
-
+                message.success("Registration success!")
+                obj["uid"] = user.uid;
+                sendEmailVerification(user)
+                    .then(() => {
+                        message.success("A confirmation email has been sent to your email address.")
+                        updates['/users/' + obj["uid"]] = obj;
+                        return update(ref(db), updates);
+                    })
+                    .catch((error) => {
+                        //message.error("We could not send the verification email - contact an admin")
+                        message.error(error.message)
+                    });
             })
             .catch((error) => {
-                const errorCode = error.code;
-                const errorMessage = error.message;
-                console.error("Error creating user:", errorMessage);
-                // Handle error message display (e.g., using Ant Design message.error)
-                message.error(errorMessage);
-            });
+                message.error(error.message)
+            })
+        //console.log(firstName,lastName,email,password,confirmPassword);
     }
 
     return (
-        <div>
-            <form className = "form-wrapper" onSubmit={handleFormSubmit}>
-            <div className = "form">
-                    <div className = "form-padding">
-                        <div className = "form-logo" onClick={(e) => navigate("/")}>
-                            <span className = "community">
-                                Community
-                            </span>
-                            <span className = "heros">
-                                Heroes
-                            </span>
-                        </div>
-                        <div className = "form-section">
-                            <div className = "form-input-wrapper">
-                                <input className="form-input" type="text" placeholder="Username" name="email"
-                                required
-                                value = {username}
-                                onChange = {(e) => setUsername(e.target.value)}
-                                ></input>
-                                <span className = "form-input-focus-border"></span>
-                                <span className = "form-input-focus-border-reverse"></span>
-                            </div>
-                        </div>
-                        <div className = "form-section">
-                            <div className = "form-input-wrapper">
-                                <input className="form-input" type="text" placeholder="Email" name="email"
-                                required
-                                value = {email}
-                                onChange = {(e) => setEmail(e.target.value)}
-                                ></input>
-                                <span className = "form-input-focus-border"></span>
-                                <span className = "form-input-focus-border-reverse"></span>
-                            </div>
-                        </div>
-                        <div className = "form-section">
-                            <div className = "form-input-wrapper">
-                                <input className="form-input" type="password" placeholder="Password" name="password"
-                                required
-                                
-                                value = {password}
-                                onChange = {(e) => setPassword(e.target.value)}
-                                ></input>
-                                <span className = "form-input-focus-border"></span>
-                                <span className = "form-input-focus-border-reverse"></span>
-                            </div>
-                        </div>
-                        <div className = "form-section">
-                            <div className = "form-input-wrapper">
-                                <input className="form-input" type="password" placeholder="Confirm Password" name="confirm Password"
-                                required
-                                value = {confirm}
-                                onChange = {(e) => setConfirm(e.target.value)}
-                                ></input>
-                                <span className = "form-input-focus-border"></span>
-                                <span className = "form-input-focus-border-reverse"></span>
-                            </div>
-                        </div>
-                        {
-                            error &&
-                            <div className = "form-section">
-                                <div classNameName = "form-error">
-                                    <div classNameName="form-msg-error"> {emsg} </div>
-                                </div>
-                            </div>
-                        }
-                        <div className = "form-section">
-                            <button className = "form-large-button">Register</button>
-                        </div>
+        <div className="form">
+            <div class="section-title">Register an Account</div>
+            <div>Fields marked with an * are required.</div>
+            <Form
+                name="registration"
+                style={{
+                    maxWidth: 700,
+                }}
+                onFinish={handleSubmit}
+                autoComplete="off"
+                method='POST'
+                scrollToFirstError
+            >
+                <div className="form-section">
+                    <div className="section-title-minor">Personal Information</div>
+                    <div className="form-row">
+                        <Form.Item
+                            name="name"
+                            rules={[
+                                {
+                                    required: true,
+                                    message: 'Please input your name',
+                                    whitespace: true,
+                                },
+                            ]}
+                        >
+                            <Input placeholder="Name*" />
+                        </Form.Item>
+                    <div className="form-row">
+                        <Form.Item
+                            name="email"
+                            rules={[
+                                {
+                                    type: 'email',
+                                    message: 'Not a valid email',
+                                },
+                                {
+                                    required: true,
+                                    message: 'Please input your email',
+                                },
+                            ]}
+                        >
+                            <Input placeholder="Email*" />
+                        </Form.Item>
                     </div>
-                </div> 
-            </form>
-            {
-                redirectHome &&
-                <Navigate replace to="/" />
-            }
+                    <div className="form-row">
+                        <Form.Item
+                            name="password"
+                            rules={[
+                                {
+                                    required: true,
+                                    message: 'Please input your password!',
+                                },
+                            ]}
+                            hasFeedback
+                        >
+                            <Input.Password placeholder="Password*" />
+                        </Form.Item>
+
+                        <Form.Item
+                            name="confirm"
+                            dependencies={['password']}
+                            hasFeedback
+                            rules={[
+                                {
+                                    required: true,
+                                    message: 'Please confirm your password!',
+                                },
+                                ({ getFieldValue }) => ({
+                                    validator(_, value) {
+                                        if (!value || getFieldValue('password') === value) {
+                                            return Promise.resolve();
+                                        }
+                                        return Promise.reject(new Error('Passwords do not match!'));
+                                    },
+                                }),
+                            ]}
+                        >
+                            <Input.Password placeholder="Confirm Password*" />
+                        </Form.Item>
+                    </div>
+                        <Button type="primary" htmlType="submit">
+                            Register
+                        </Button>
+                    </div>
+
+                </div>
+            </Form>
         </div>
-    );
+
+    )
 }
 
-export default Register;
+export default Register

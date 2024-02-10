@@ -21,7 +21,7 @@ const Profile = (props) => {
             get(dbRef, `users/${userID}`).then((snapshot) => {
                 console.log(snapshot)
                 if (snapshot.exists()) {
-                    userData = snapshot.val();
+                    // userData = snapshot.val();
                     console.log(userData);
                     console.log("1")
                     // Update state with user data if needed

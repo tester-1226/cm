@@ -1,107 +1,104 @@
-import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
-import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
-import { useNavigate } from "react-router-dom";
-import { genericFetch } from './datafetch';
+import React, { useState } from 'react';
+import { BrowserRouter as Router, Route, Switch, Link, useParams, NavLink, useNavigate } from 'react-router-dom';
 import '../css/form.css';
 import { signInWithEmailAndPassword, signOut, sendEmailVerification } from 'firebase/auth';
-import { database } from '../firebase_setup/firebase.js'
+import { db } from '../firebase_setup/firebase.js'
 import { ref, push, child, update } from "firebase/database";
 import { auth } from '../firebase_setup/firebase';
-import Cookies from 'js-cookie';
+
+import { message } from 'antd';
+
 
 const Login = (props) => {
     const navigate = useNavigate();
-    const [username, setUsername] = useState('');
-    const [password, setPassword] = useState(''); 
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
 
-    const [redirectHome, setRedirectHome] = useState(false);
-
-    const handleFormSubmit = (e) => {
-        /*e.preventDefault();
-        genericFetch(
-            "GET",
-            "http://localhost:8080/api/v1/customer/info?email="+username,
-            {}
-        ).then(resp => {
-            
-        })*/
+    const onLogin = (e) => {
         e.preventDefault();
-        signInWithEmailAndPassword(auth, username, password)
+        signInWithEmailAndPassword(auth, email, password)
             .then((userCredential) => {
                 // Signed in
                 /*var lgDate = new Date();
                 update(ref(database, 'users/' + user.uid), {
                     last_login: lgDate,
                 })*/
-                console.log(userCredential)
+
                 const user = userCredential.user;
-                console.log(user)
-                //props.changeLoginState(true, user.uid)
-                //console.log("Signed in as " + user.email)
-                Cookies.set('token', user.uid, {expires:1});
-                setRedirectHome(true);
+                if (user.emailVerified) {
+                    navigate("/")
+                    //console.log(user);
+                    //console.log(props.state)
+                    props.changeLoginState(true, user.uid)
+                    message.success("Signed in as " + user.email)
+                } else {
+                    sendEmailVerification(user)
+                    signOut(auth).then(() => {
+                        message.error("Your email is not verified! Resending verification email.")
+                    }).catch((error) => {
+                        message.error(error.message)
+                    });
+                }
             })
             .catch((error) => {
                 const errorCode = error.code;
                 const errorMessage = error.message;
                 //message.error(errorMessage)
                 console.log(errorCode, errorMessage);
-                console.log("Invalid email or password!");
+                message.error("Invalid email or password!");
             });
-        }
 
-        useEffect(()=>{
-            if(Cookies.get('token')) setRedirectHome(true);
-        },[]);
-
+    }
     return (
-        <div>
-            <form className = "form-wrapper" onSubmit={handleFormSubmit}>
-            <div className = "form">
-                    <div className = "form-padding">
-                        <div className = "form-logo" onClick={(e) => navigate("/")}>
-                            <span className = "community">
-                                Community
-                            </span>
-                            <span className = "heros">
-                                Heroes
-                            </span>
-                        </div>
-                        <div className = "form-section">
-                            <div className = "form-input-wrapper">
-                                <input className="form-input" type="text" placeholder="Email" name="email"
-                                required
-                                value = {username}
-                                onChange = {(e) => setUsername(e.target.value)}
-                                ></input>
-                                <span className = "form-input-focus-border"></span>
-                                <span className = "form-input-focus-border-reverse"></span>
+        <div className="poo">
+            <main >
+                <section>
+                    <div>
+
+                        <form>
+                            <div className="username">
+                                <label htmlFor="email-address">
+                                    Email address
+                                </label>
+                                <input
+                                    id="email-address"
+                                    name="email"
+                                    type="email"
+                                    required
+                                    placeholder="Email address"
+                                    onChange={(e) => setEmail(e.target.value)}
+                                />
                             </div>
-                        </div>
-                        <div className = "form-section">
-                            <div className = "form-input-wrapper">
-                                <input className="form-input" type="text" placeholder="Password" name="email"
-                                required
-                                value = {password}
-                                onChange = {(e) => setPassword(e.target.value)}
-                                ></input>
-                                <span className = "form-input-focus-border"></span>
-                                <span className = "form-input-focus-border-reverse"></span>
+
+                            <div className="password">
+                                <label htmlFor="password">
+                                    Password
+                                </label>
+                                <input
+                                    id="password"
+                                    name="password"
+                                    type="password"
+                                    required
+                                    placeholder="Password"
+                                    onChange={(e) => setPassword(e.target.value)}
+                                />
                             </div>
-                        </div>
-                        <div className = "form-section">
-                                <button type = "submit" className = "form-large-button">Login</button>
-                        </div>
+
+
+                            <div>
+                                <p class='text'>Dont have an account? Sign up <NavLink to="/register">
+                                    Sign up
+                                </NavLink></p>
+                                <p class='text'><a href='/login/forgotpassword'>Forgot your password?</a></p>
+                            </div>
+                            <NavLink to="/" ><button type="submit" onClick={onLogin}><a href='#'>Sign in</a></button></NavLink>
+                        </form>
+
                     </div>
-                </div>
-            </form>
-            {
-                redirectHome &&
-                <Navigate replace to="/profile" />
-            }
+                </section>
+            </main>
         </div>
-    );
+    )
 }
 
-export default Login;
+export default Login
