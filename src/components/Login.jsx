@@ -8,7 +8,7 @@ import { signInWithEmailAndPassword, signOut, sendEmailVerification } from 'fire
 import { database } from '../firebase_setup/firebase.js'
 import { ref, push, child, update } from "firebase/database";
 import { auth } from '../firebase_setup/firebase';
-// import Cookies from 'js-cookie';
+import Cookies from 'js-cookie';
 
 const Login = (props) => {
     const navigate = useNavigate();
