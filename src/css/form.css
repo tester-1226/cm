@@ -24,6 +24,10 @@
     text-align: center;
 }
 
+.form-logo{
+    cursor: pointer;
+}
+
 .form-logo .community{
     font-family: "Poppins", sans-serif;
     font-size: 20px;
