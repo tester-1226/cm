@@ -1,18 +1,17 @@
 import React from 'react'
 import '../css/profile.css';
 
-
 const Profile = (props) => {
     return (
         <div>
-           <div class = 'form-patting'>
-                <button>
+           <div align = "center">
+                <button class = "form-large-button">
                     Upload your pfp
-                    <input type="file">
-
-                    </input>
                 </button>
-                
+            </div>
+
+            <div align = "left">
+               
             </div>
         </div>
     );
