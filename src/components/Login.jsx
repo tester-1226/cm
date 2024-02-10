@@ -5,9 +5,9 @@ import { useNavigate } from "react-router-dom";
 import { genericFetch } from './datafetch';
 import '../css/form.css';
 import { signInWithEmailAndPassword, signOut, sendEmailVerification } from 'firebase/auth';
-import { database } from '../../firebase_setup/firebase.js'
+import { database } from '../firebase_setup/firebase.js'
 import { ref, push, child, update } from "firebase/database";
-import { auth } from '../../firebase_setup/firebase';
+import { auth } from '../firebase_setup/firebase';
 
 
 const Login = (props) => {
@@ -37,14 +37,14 @@ const Login = (props) => {
 
                 const user = userCredential.user;
                 props.changeLoginState(true, user.uid)
-                message.success("Signed in as " + user.email)
+                console.log("Signed in as " + user.email)
             })
             .catch((error) => {
                 const errorCode = error.code;
                 const errorMessage = error.message;
                 //message.error(errorMessage)
                 console.log(errorCode, errorMessage);
-                message.error("Invalid email or password!");
+                console.log("Invalid email or password!");
             });
         }
 
