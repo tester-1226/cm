@@ -1,8 +1,26 @@
 import React from 'react'
+import '../css/profile.css';
 
 const Profile = (props) => {
     return (
-        <div>test profile</div>
+        <div>
+           <div align = "center">
+                <button class = "form-large-button">
+                    Upload your pfp
+                </button>
+            </div>
+
+            <div align = "Center">
+                <h4>
+                    Email:
+                </h4>
+            </div>
+
+
+            <div align = "center">
+
+            </div>
+        </div>
     );
 }
 

@@ -10,7 +10,6 @@ import { ref, push, child, update } from "firebase/database";
 import { auth } from '../firebase_setup/firebase';
 // import Cookies from 'js-cookie';
 
-
 const Login = (props) => {
     const navigate = useNavigate();
     const [username, setUsername] = useState('');
