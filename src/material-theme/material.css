@@ -1,0 +1,50 @@
+@import url("https://fonts.googleapis.com/css?family=Roboto:100,200,300,400,500,600,700,800,900");
+
+:root{
+    --primary: #415f91;
+    --secondary: #565f71;
+    --tertiary: #705575; 
+    --error: #ba1a1a;
+    --background: #ffffff;
+    --primary-container: #d6e3ff;
+    --secondary-container: #dae2f9;
+    --tertiary-container: #fad8fd;
+    --error-container: #ffdad6;
+    --primary-background: #001b3e;
+    --secondary-background: #131c2b;
+    --tertiary-background: #28132e;
+    --error-background: #410002;
+}
+
+.small-material-button{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    background-color: var(--background);
+    color: var(--primary);
+    height: 40px;
+    padding: 0px 24px;
+    border-radius: 20px;
+    box-sizing: border-box;
+    position: relative;
+    cursor: pointer;
+    gap: 8px;
+    white-space: nowrap;
+    font-family: "Roboto", sans-serif;
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+    transition: box-shadow 0.2s ease-in-out 0s;
+}
+
+.small-material-button:hover{
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 2px 0px;
+}
+
+.small-material-button:active{
+    box-shadow: rgb(204, 219, 232) 3px 3px 6px 0px inset, rgba(255, 255, 255, 0.5) -3px -3px 6px 1px inset;
+}
+
+*{
+    outline: none;
+}
