@@ -1,14 +1,13 @@
 import React, { useState, useEffect } from 'react';
-import { database } from '../firebase_setup/firebase.js'
-import { ref, push, child, update } from "firebase/database";
-import { getAuth, createUserWithEmailAndPassword, sendEmailVerification } from "firebase/auth";
-//import { message, Form, Input, Checkbox, Button } from 'antd';
 import { Navigate } from 'react-router-dom';
 import { useNavigate } from "react-router-dom";
 import { genericFetch } from './datafetch';
 import '../css/form.css';
-
+import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
+import { db } from '../firebase_setup/firebase.js';
+import { ref, push } from "firebase/database";
 import CryptoJS from 'crypto-js'; 
+import { message } from 'antd';
 
 const Register = (props) => {
     const secretPass = "XkhZG4fW2t2W";
@@ -16,48 +15,56 @@ const Register = (props) => {
     const [email, setEmail] = useState(''); 
     const [password, setPassword] = useState(''); 
     const [confirm, setConfirm] = useState(''); 
-
-    const [redirectHome, setRedirectHome] = useState(false);
     const [error, setError] = useState(false);
+    const [redirectHome, setRedirectHome] = useState(false);
     const [emsg, setEmsg] = useState(''); 
-    
+
     useEffect(() => {
-        if(password != confirm){
+        if(password !== confirm){
             setError(true);
             setEmsg("Passwords Must Match");
-        }else{
+        } else {
             setError(false);
         }
     }, [confirm, password]);
 
-    const handleFormSubmit = (e) => 
-    {
+    const handleFormSubmit = (e) => {
         e.preventDefault();
-        let obj = 
-        {
-            uid: '',
-            name: e.name,
-            phone: e.phone,
-            email: e.email,
-            password: e.password
-        }
-        const updates = {};
+
+        // Encrypt password
+        const encryptedPassword = CryptoJS.AES.encrypt(password, secretPass).toString();
+
+        // Create user in Firebase Authentication
         const auth = getAuth();
-        //encryot password,ccn1,ccn1expdate
-        obj.password = CryptoJS.AES.encrypt(obj.password, secretPass).toString();
-        updates['users/' + auth.currentUser.uid] = obj;
-        createUserWithEmailAndPassword(auth, obj["email"], obj["password"])
+        createUserWithEmailAndPassword(auth, email, password)
             .then((userCredential) => {
                 const user = userCredential.user;
-                console.log("Registration success!")
-                obj["uid"] = user.uid;
+                const userData = {
+                    name: username,
+                    email: email,
+                    password: encryptedPassword
+                };
+
+                // Push user data to Firebase Realtime Database
+                const dbRef = ref(db);
+                push(ref(db), userData)
+                .then(() => {
+                    console.log("User data added to the database");
+                    // If you want to redirect after successful registration
+                    setRedirectHome(true);
+                })
+                .catch((error) => {
+                    console.error("Error adding user data to the database: ", error);
+                });
+
             })
-        // if(error) return;
-        // genericFetch(
-        //     "GET",
-        //     "http://localhost:8080/api/v1/customer/info?email="+username,
-        //     {}
-        // )
+            .catch((error) => {
+                const errorCode = error.code;
+                const errorMessage = error.message;
+                console.error("Error creating user:", errorMessage);
+                // Handle error message display (e.g., using Ant Design message.error)
+                message.error(errorMessage);
+            });
     }
 
     return (
