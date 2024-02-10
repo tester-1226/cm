@@ -9,15 +9,21 @@ import Navbar from './Navbar';
 
 const Profile = (props) => {
     const [user, loading, error] = useAuthState(auth);
+    const [displayName, setDisplayName] = useState(null);
+    let userData;
+    console.log(Cookies.get('token'))
 
     useEffect(() => {
         if (user) {
-            //const dbRef = ref(getDatabase());
+            const dbRef = ref(getDatabase());
             const userID = user.uid;
-            get(child(dbRef, `users/${userID}`)).then((snapshot) => {
+            console.log(userID)
+            get(dbRef, `users/${userID}`).then((snapshot) => {
+                console.log(snapshot)
                 if (snapshot.exists()) {
-                    const userData = snapshot.val();
+                    userData = snapshot.val();
                     console.log(userData);
+                    console.log("1")
                     // Update state with user data if needed
                 } else {
                     console.log("User data not found");
@@ -26,7 +32,10 @@ const Profile = (props) => {
                 console.error("Error fetching user data:", error);
             });
         }
+        console.log(user)
+        console.log(userData)
     }, [user]);
+    
 
     if (loading) {
         return <div>Loading...</div>;
@@ -50,8 +59,11 @@ const Profile = (props) => {
                     Email: {user.email}
                 </p>
             </div>
-
-            {/* Add other user details as needed */}
+            <div align="center">
+                <p>
+                    Username: {userData}
+                </p>
+            </div>
 
             <div align="center">
                 {/* List Component */}

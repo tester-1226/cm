@@ -11,6 +11,7 @@ import { message } from 'antd';
 import Cookies from 'js-cookie';
 
 const Register = (props) => {
+    const navigate = useNavigate();
     const secretPass = "XkhZG4fW2t2W";
     const [username, setUsername] = useState('');
     const [email, setEmail] = useState(''); 
@@ -40,11 +41,11 @@ const Register = (props) => {
         createUserWithEmailAndPassword(auth, email, password)
             .then((userCredential) => {
                 const user = userCredential.user;
-                const userData = {
+                database.ref('user/' + userId).set({
                     name: username,
                     email: email,
                     password: encryptedPassword
-                };
+                });
 
                 // Push user data to Firebase Realtime Database
                 const dbRef = ref(db);
@@ -73,7 +74,7 @@ const Register = (props) => {
             <form className = "form-wrapper" onSubmit={handleFormSubmit}>
             <div className = "form">
                     <div className = "form-padding">
-                        <div className = "form-logo">
+                        <div className = "form-logo" onClick={(e) => navigate("/")}>
                             <span className = "community">
                                 Community
                             </span>

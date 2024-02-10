@@ -25,9 +25,15 @@
     top: 0px;
     width: 100vw;
     box-sizing: border-box;
+    justify-content: space-between;
+
 }
 
 .navbar-flex{
+    display: flex;
+}
+
+.nav .left{
     display: flex;
 }
 
