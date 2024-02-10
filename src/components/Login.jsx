@@ -34,8 +34,9 @@ const Login = (props) => {
                 update(ref(database, 'users/' + user.uid), {
                     last_login: lgDate,
                 })*/
-
+                console.log(userCredential)
                 const user = userCredential.user;
+                console.log(user)
                 //props.changeLoginState(true, user.uid)
                 //console.log("Signed in as " + user.email)
                 Cookies.set('token', user.uid, {expires:1});

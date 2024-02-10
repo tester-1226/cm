@@ -41,11 +41,11 @@ const Register = (props) => {
         createUserWithEmailAndPassword(auth, email, password)
             .then((userCredential) => {
                 const user = userCredential.user;
-                const userData = {
+                database.ref('user/' + userId).set({
                     name: username,
                     email: email,
                     password: encryptedPassword
-                };
+                });
 
                 // Push user data to Firebase Realtime Database
                 const dbRef = ref(db);
