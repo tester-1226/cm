@@ -38,8 +38,8 @@ const Login = (props) => {
                 const user = userCredential.user;
                 //props.changeLoginState(true, user.uid)
                 //console.log("Signed in as " + user.email)
-                // Cookies.set('token', user.uid, {expires:1});
-                // setRedirectHome(true);
+                Cookies.set('token', user.uid, {expires:1});
+                setRedirectHome(true);
             })
             .catch((error) => {
                 const errorCode = error.code;
@@ -50,9 +50,9 @@ const Login = (props) => {
             });
         }
 
-        // useEffect(()=>{
-        //     if(Cookies.get('token')) setRedirectHome(true);
-        // },[]);
+        useEffect(()=>{
+            if(Cookies.get('token')) setRedirectHome(true);
+        },[]);
 
     return (
         <div>
