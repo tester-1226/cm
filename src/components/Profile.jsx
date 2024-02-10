@@ -5,16 +5,17 @@ import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { useNavigate } from "react-router-dom";
 import { genericFetch } from './datafetch';
 import { signInWithEmailAndPassword, signOut, sendEmailVerification, getAuth } from 'firebase/auth';
-import { database } from '../firebase_setup/firebase.js'
+import { db } from '../firebase_setup/firebase.js'
 import { ref, push, child, update } from "firebase/database";
 import { auth } from '../firebase_setup/firebase';
 import Cookies from 'js-cookie';
+import Navbar from './Navbar';
 
 const Profile = (props) => {
     const user = Cookies.get('token');
     console.log(user);
 
-    const dbRef = ref(getDatabase());
+    //const dbRef = ref(getDatabase());
 
     const userID = user.uid;
     console.log(userID);
@@ -22,7 +23,8 @@ const Profile = (props) => {
 
     return (
         <div>
-           <div align = "center">
+            <Navbar/>
+            <div align = "center">
                 <button class = "form-larger-button">
                     Upload your pfp
                 </button>

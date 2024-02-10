@@ -1,8 +1,10 @@
 import React from 'react'
+import Navbar from './Navbar';
 
 const Event = (props) => {
     return (
         <div>
+            <Navbar/>
             <form>
                 <label for="img">Event Image:</label>
                 <input type="image" id="eventImage" name="eventImage" accept="image/*"></input>

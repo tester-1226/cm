@@ -1,8 +1,10 @@
 import React from 'react'
+import Navbar from './Navbar';
 
 const AddEvent = (props) => {
     return (
         <div>
+            <Navbar/>
             <div>
                 <form>
                     <label for="img">Event Picture:</label>
