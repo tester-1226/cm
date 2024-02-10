@@ -1,27 +1,50 @@
 import React from 'react'
-
+import '../css/event.css';
 const Event = (props) => {
     return (
         <div>
-            <form>
-                <label for="img">Event Image:</label>
-                <input type="image" id="eventImage" name="eventImage" accept="image/*"></input>
-                <input type="image" id="pfp" name="pfp" accept="image/*"></input>
-             </form>
-             <div>
-                <label for="eventName">Event name:</label>
-                <input type="text" id="eventName" name="eventName"></input>
-                <label for="userName">Username:</label>
-                <input type="text" id="userName" name="userName"></input>
-                <label for="location">Location:</label>
-                <input type="text" id="eventLocation" name="eventLocation"></input>
-                <label for="date">Date:</label>
-                <input type="date" name="eventDate"></input>
-                <label for="time">Time:</label>
-                <input type="time" name="eventDate"></input>
-             </div>
-             <div id="button">
-                <button type="button">RSVP</button>
+            <div align = "center">
+                <button class = "form-eventImage-button">
+                    Event Image
+                </button>
+            </div>
+            <div align = "center">
+                <p>
+                    Event Name:
+                </p>
+            </div>
+            <div align = "center">
+                <p>
+                    Event Name:
+                </p>
+            </div>
+
+            <div align = "center">
+                <p>
+                    Description:
+                </p>
+            </div>
+
+            <div align = "center">
+                <p>
+                     Date:
+                </p>
+            </div>
+
+            <div align = "center">
+                <p>
+                     Time:
+                </p>
+            </div>
+
+            <div align = "center">
+                <p>
+                     Location:
+                </p>
+            </div>
+
+             <div align = "center">
+                <button class="form-RSVP-button">RSVP</button>
              </div>
         </div>
     );
