@@ -1,8 +1,11 @@
 import React from 'react'
 import '../css/event.css';
+import Navbar from './Navbar';
+
 const Event = (props) => {
     return (
         <div>
+            <Navbar/>
             <div align = "center">
                 <button class = "form-eventImage-button">
                     Event Image

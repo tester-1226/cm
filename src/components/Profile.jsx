@@ -38,6 +38,7 @@ const Profile = (props) => {
 
     return (
         <div>
+            <Navbar />
             <div align="center">
                 <button className="form-larger-button">
                     Upload your pfp
