@@ -31,7 +31,6 @@ const Profile = (props) => {
                             </tr>
                         </div>
                         <div>
-                            
                         </div>
                     </div>
                 </div>
