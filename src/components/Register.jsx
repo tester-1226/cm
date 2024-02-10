@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { database } from '../../firebase_setup/firebase.js'
+import { database } from '../firebase_setup/firebase.js'
 import { ref, push, child, update } from "firebase/database";
 import { getAuth, createUserWithEmailAndPassword, sendEmailVerification } from "firebase/auth";
-import { message, Form, Input, Checkbox, Button } from 'antd';
+//import { message, Form, Input, Checkbox, Button } from 'antd';
 import { Navigate } from 'react-router-dom';
 import { useNavigate } from "react-router-dom";
 import { genericFetch } from './datafetch';
@@ -36,22 +36,22 @@ const Register = (props) => {
         let obj = 
         {
             uid: '',
-            name: values.name,
-            phone: values.phone,
-            email: values.email,
-            password: values.password
+            name: e.name,
+            phone: e.phone,
+            email: e.email,
+            password: e.password
         }
         const updates = {};
         const auth = getAuth();
         //encryot password,ccn1,ccn1expdate
         obj.password = CryptoJS.AES.encrypt(obj.password, secretPass).toString();
         updates['users/' + auth.currentUser.uid] = obj;
-        createUserWithEmailAndPassword(auth, obj["email"], values["password"])
+        createUserWithEmailAndPassword(auth, obj["email"], obj["password"])
             .then((userCredential) => {
                 const user = userCredential.user;
-                message.success("Registration success!")
+                console.log("Registration success!")
                 obj["uid"] = user.uid;
-            }
+            })
         // if(error) return;
         // genericFetch(
         //     "GET",
@@ -59,6 +59,7 @@ const Register = (props) => {
         //     {}
         // )
     }
+
     return (
         <div>
             <form className = "form-wrapper" onSubmit={handleFormSubmit}>
