@@ -14,7 +14,7 @@ const Profile = (props) => {
     const user = Cookies.get('token');
     console.log(user);
 
-    const dbRef = ref(getDatabase());
+    //const dbRef = ref(getDatabase());
 
     const userID = user.uid;
     console.log(userID);
