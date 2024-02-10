@@ -1,6 +1,15 @@
 @import url("https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900");
 @import url("https://fonts.googleapis.com/css?family=Archivo+Black:100,200,300,400,500,600,700,800,900");
 
+:root{
+    --background: #359433;
+    --foreground: #ebf8f7;
+    --background-bold: #4cc162;
+    --foreground-bold: #b6e6d5;
+    --accent: #be2727;
+    --accent-complement: #10DDEF;
+}
+
 .form-wrapper{
     width: 100%;
     height: 100vh;

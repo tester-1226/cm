@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { useNavigate } from "react-router-dom";
@@ -8,6 +8,7 @@ import { signInWithEmailAndPassword, signOut, sendEmailVerification } from 'fire
 import { database } from '../firebase_setup/firebase.js'
 import { ref, push, child, update } from "firebase/database";
 import { auth } from '../firebase_setup/firebase';
+import Cookies from 'js-cookie';
 
 
 const Login = (props) => {
@@ -37,7 +38,8 @@ const Login = (props) => {
 
                 const user = userCredential.user;
                 //props.changeLoginState(true, user.uid)
-                console.log("Signed in as " + user.email)
+                //console.log("Signed in as " + user.email)
+                Cookies.set('token', user.uid, {expires:1});
             })
             .catch((error) => {
                 const errorCode = error.code;
@@ -48,44 +50,47 @@ const Login = (props) => {
             });
         }
 
+        useEffect(()=>{
+            if(Cookies.get('token')) setRedirectHome(true);
+        },[]);
 
     return (
         <div>
-            <form class = "form-wrapper" onSubmit={handleFormSubmit}>
-            <div class = "form">
-                    <div class = "form-padding">
-                        <div class = "form-logo" onClick={(e) => navigate("/")}>
-                            <span class = "community">
+            <form className = "form-wrapper" onSubmit={handleFormSubmit}>
+            <div className = "form">
+                    <div className = "form-padding">
+                        <div className = "form-logo" onClick={(e) => navigate("/")}>
+                            <span className = "community">
                                 Community
                             </span>
-                            <span class = "heros">
+                            <span className = "heros">
                                 Heroes
                             </span>
                         </div>
-                        <div class = "form-section">
-                            <div class = "form-input-wrapper">
-                                <input class="form-input" type="text" placeholder="Email" name="email"
+                        <div className = "form-section">
+                            <div className = "form-input-wrapper">
+                                <input className="form-input" type="text" placeholder="Email" name="email"
                                 required
                                 value = {username}
                                 onChange = {(e) => setUsername(e.target.value)}
                                 ></input>
-                                <span class = "form-input-focus-border"></span>
-                                <span class = "form-input-focus-border-reverse"></span>
+                                <span className = "form-input-focus-border"></span>
+                                <span className = "form-input-focus-border-reverse"></span>
                             </div>
                         </div>
-                        <div class = "form-section">
-                            <div class = "form-input-wrapper">
-                                <input class="form-input" type="text" placeholder="Password" name="email"
+                        <div className = "form-section">
+                            <div className = "form-input-wrapper">
+                                <input className="form-input" type="text" placeholder="Password" name="email"
                                 required
                                 value = {password}
                                 onChange = {(e) => setPassword(e.target.value)}
                                 ></input>
-                                <span class = "form-input-focus-border"></span>
-                                <span class = "form-input-focus-border-reverse"></span>
+                                <span className = "form-input-focus-border"></span>
+                                <span className = "form-input-focus-border-reverse"></span>
                             </div>
                         </div>
-                        <div class = "form-section">
-                                <button type = "submit" class = "form-large-button">Login</button>
+                        <div className = "form-section">
+                                <button type = "submit" className = "form-large-button">Login</button>
                         </div>
                     </div>
                 </div>

@@ -4,9 +4,13 @@
     --tertiary: #705575; 
     --error: #ba1a1a;
     --background: #ffffff;
-
     --primary-container: #d6e3ff;
     --secondary-container: #dae2f9;
     --tertiary-container: #fad8fd;
     --error-container: #ffdad6;
+    --primary-background: #001b3e;
+    --secondary-background: #131c2b;
+    --tertiary-background: #28132e;
+    --error-background: #410002;
 }
+

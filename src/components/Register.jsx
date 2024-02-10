@@ -37,71 +37,71 @@ const Register = (props) => {
 
     return (
         <div>
-            <form class = "form-wrapper" onSubmit={handleFormSubmit}>
-            <div class = "form">
-                    <div class = "form-padding">
-                        <div class = "form-logo">
-                            <span class = "community">
+            <form className = "form-wrapper" onSubmit={handleFormSubmit}>
+            <div className = "form">
+                    <div className = "form-padding">
+                        <div className = "form-logo">
+                            <span className = "community">
                                 Community
                             </span>
-                            <span class = "heros">
+                            <span className = "heros">
                                 Heroes
                             </span>
                         </div>
-                        <div class = "form-section">
-                            <div class = "form-input-wrapper">
-                                <input class="form-input" type="text" placeholder="Username" name="email"
+                        <div className = "form-section">
+                            <div className = "form-input-wrapper">
+                                <input className="form-input" type="text" placeholder="Username" name="email"
                                 required
                                 value = {username}
                                 onChange = {(e) => setUsername(e.target.value)}
                                 ></input>
-                                <span class = "form-input-focus-border"></span>
-                                <span class = "form-input-focus-border-reverse"></span>
+                                <span className = "form-input-focus-border"></span>
+                                <span className = "form-input-focus-border-reverse"></span>
                             </div>
                         </div>
-                        <div class = "form-section">
-                            <div class = "form-input-wrapper">
-                                <input class="form-input" type="text" placeholder="Email" name="email"
+                        <div className = "form-section">
+                            <div className = "form-input-wrapper">
+                                <input className="form-input" type="text" placeholder="Email" name="email"
                                 required
                                 value = {email}
                                 onChange = {(e) => setEmail(e.target.value)}
                                 ></input>
-                                <span class = "form-input-focus-border"></span>
-                                <span class = "form-input-focus-border-reverse"></span>
+                                <span className = "form-input-focus-border"></span>
+                                <span className = "form-input-focus-border-reverse"></span>
                             </div>
                         </div>
-                        <div class = "form-section">
-                            <div class = "form-input-wrapper">
-                                <input class="form-input" type="text" placeholder="Password" name="email"
+                        <div className = "form-section">
+                            <div className = "form-input-wrapper">
+                                <input className="form-input" type="text" placeholder="Password" name="email"
                                 required
                                 value = {password}
                                 onChange = {(e) => setPassword(e.target.value)}
                                 ></input>
-                                <span class = "form-input-focus-border"></span>
-                                <span class = "form-input-focus-border-reverse"></span>
+                                <span className = "form-input-focus-border"></span>
+                                <span className = "form-input-focus-border-reverse"></span>
                             </div>
                         </div>
-                        <div class = "form-section">
-                            <div class = "form-input-wrapper">
-                                <input class="form-input" type="text" placeholder="Confirm Password" name="email"
+                        <div className = "form-section">
+                            <div className = "form-input-wrapper">
+                                <input className="form-input" type="text" placeholder="Confirm Password" name="email"
                                 required
                                 value = {confirm}
                                 onChange = {(e) => setConfirm(e.target.value)}
                                 ></input>
-                                <span class = "form-input-focus-border"></span>
-                                <span class = "form-input-focus-border-reverse"></span>
+                                <span className = "form-input-focus-border"></span>
+                                <span className = "form-input-focus-border-reverse"></span>
                             </div>
                         </div>
                         {
                             error &&
-                            <div class = "form-section">
-                                <div className = "form-error">
-                                    <div className="form-msg-error"> {emsg} </div>
+                            <div className = "form-section">
+                                <div classNameName = "form-error">
+                                    <div classNameName="form-msg-error"> {emsg} </div>
                                 </div>
                             </div>
                         }
-                        <div class = "form-section">
-                            <button class = "form-large-button">Register</button>
+                        <div className = "form-section">
+                            <button className = "form-large-button">Register</button>
                         </div>
                     </div>
                 </div> 
