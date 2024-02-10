@@ -40,6 +40,7 @@ const Login = (props) => {
                 //props.changeLoginState(true, user.uid)
                 //console.log("Signed in as " + user.email)
                 Cookies.set('token', user.uid, {expires:1});
+                setRedirectHome(true);
             })
             .catch((error) => {
                 const errorCode = error.code;
