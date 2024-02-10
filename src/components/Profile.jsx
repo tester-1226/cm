@@ -10,15 +10,23 @@ const Profile = (props) => {
                 </button>
             </div>
 
-            <div align = "Center">
-                <h4>
-                    Email:
-                </h4>
+            <div align = "center">
+                <p>
+                    Email: 
+                    Test
+                </p>
             </div>
 
 
             <div align = "center">
+                <p>
+                    Username:
+                    Test 
+                </p>
+            </div>
 
+            <div align = "center">
+            {/* List Component */}
             </div>
         </div>
     );
