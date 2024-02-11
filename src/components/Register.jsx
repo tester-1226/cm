@@ -143,6 +143,9 @@ function Register() {
                         <Button type="primary" htmlType="submit">
                             Register
                         </Button>
+                        <Button type="primary" style = {{marginLeft:"10px"}} onClick={(e) => {navigate("/login")}}>
+                            Login Instead
+                        </Button>
                     </div>
 
                 </div>

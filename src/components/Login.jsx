@@ -101,6 +101,9 @@ function Login() {
                         <Button type="primary" htmlType="submit">
                             Login
                         </Button>
+                        <Button type="primary" style = {{marginLeft:"10px"}} onClick={(e) => {navigate("/register")}}>
+                            Sign Up
+                        </Button>
                     </div>
 
                 </div>
