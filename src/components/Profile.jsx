@@ -4,6 +4,7 @@ import { onAuthStateChanged , getAuth} from 'firebase/auth';
 import CryptoJS from 'crypto-js';
 import { Form } from 'antd'; // Ensure you import Form from 'antd' if you haven't already
 import Navbar from './Navbar';
+import Jake from "../images/jake.jpg"
 
 import "../css/profile.css"
 
@@ -53,22 +54,24 @@ function Profile(props) {
             <Navbar />
             <div align="center">
                 <button className="form-larger-button">
-                    Upload your pfp
+                    <img src = {Jake}></img>
                 </button>
             </div>
 
-            <div align="center">
-                <p>
-                    Email: {profile.email}
-                </p>
-            </div>
-            <div align="center">
-                <p>
-                    Username: {profile.name}
-                </p>
+            <div className="info">
+                <div className='info-box' align="center">
+                    <p>
+                        Email: {profile.email}
+                    </p>
+                </div>
+                <div className='info-box' align="center">
+                    <p>
+                        Username: {profile.name}
+                    </p>
+                </div>
             </div>
 
-            <div align="center">
+            <div className='' align="center">
                 {/* List Component */}
             </div>
         </div>

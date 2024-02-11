@@ -1,6 +1,23 @@
 @import url("https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900");
 @import url("https://fonts.googleapis.com/css?family=Archivo+Black:100,200,300,400,500,600,700,800,900");
 
+
+:root{
+    --primary: #415f91;
+    --secondary: #565f71;
+    --tertiary: #705575; 
+    --error: #ba1a1a;
+    --background: #ffffff;
+    --primary-container: #d6e3ff;
+    --secondary-container: #dae2f9;
+    --tertiary-container: #fad8fd;
+    --error-container: #ffdad6;
+    --primary-background: #001b3e;
+    --secondary-background: #131c2b;
+    --tertiary-background: #28132e;
+    --error-background: #410002;
+}
+
 .form-larger-button{
     font-family: "Poppins", sans-serif;
     font-size: 15px;
@@ -22,6 +39,15 @@
     
 }
 
+.form-larger-button img{
+    border-radius: 50%;
+    width: 170px;
+    object-fit:cover;
+    margin-top: 35px;
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+    border: 1px solid var(--tertiary);
+}
+
 .button-upload {
     cursor: pointer;
     font: inherit;
@@ -31,4 +57,21 @@
 
 .profile-push{
     margin-top: 50px;
+}
+
+.profile-push .info{
+    margin-top: 30px;
+}
+
+.profile-push .info-box{
+    padding: 10px;
+    border: 1px solid var(--tertiary);
+    background-color: var(--background);
+    color: var(--tertiary);
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 300px;
+    border-radius: 30px;
+    margin-bottom: 20px;
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px; 
 }
