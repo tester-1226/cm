@@ -1,7 +1,28 @@
 import React from 'react'
 import '../css/addEvent.css'
 import Navbar from './Navbar';
+import { db } from '../firebase_setup/firebase.js'
+import { ref, push, child, update } from "firebase/database";
+import { getAuth, createUserWithEmailAndPassword, sendEmailVerification } from "firebase/auth";
+import { message, Form, Input, Checkbox, Button } from 'antd';
+import { useNavigate } from "react-router-dom";
+
+
 const AddEvent = (props) => {
+
+    const navigate = useNavigate();
+    const handleSubmit = (e) => {
+        let obj = {
+            uid: '',
+            description: e.description,
+            name: e.name,
+            location: e.location,
+            date: e.date,
+            time: e.time
+        }
+    }
+
+
     return (
         <div align = "center">
             <h1>
