@@ -41,7 +41,8 @@ const Register = (props) => {
         createUserWithEmailAndPassword(auth, email, password)
             .then((userCredential) => {
                 const user = userCredential.user;
-                database.ref('user/' + userId).set({
+                const userId = user.uid;
+                db.ref('user/' + userId).set({
                     name: username,
                     email: email,
                     password: encryptedPassword
@@ -49,7 +50,7 @@ const Register = (props) => {
 
                 // Push user data to Firebase Realtime Database
                 const dbRef = ref(db);
-                push(ref(db), userData)
+                push(ref(db))
                 .then(() => {
                     console.log("User data added to the database");
                     // If you want to redirect after successful registration
