@@ -50,8 +50,10 @@ function Profile(props) {
     }, [form]);
 
     return (
+        <div className="capsule">
+        <Navbar />
         <div className = "profile-push">
-            <Navbar />
+            
             <div align="center">
                 <button className="form-larger-button">
                     <img src = {Jake}></img>
@@ -74,6 +76,7 @@ function Profile(props) {
             <div className='' align="center">
                 {/* List Component */}
             </div>
+        </div>
         </div>
     );
 }

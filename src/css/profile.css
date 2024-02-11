@@ -36,7 +36,6 @@
     height: 200px;
     border-radius: 10px;
     margin-top: 50px;
-    
 }
 
 .form-larger-button img{
@@ -56,7 +55,15 @@
 }
 
 .profile-push{
-    margin-top: 50px;
+    margin-top: 80px;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 900px;
+    background-color: var(--background);
+    border-radius: 20px;
+    box-sizing: border-box;
+    padding-bottom: 10px;
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px; 
 }
 
 .profile-push .info{
@@ -66,12 +73,12 @@
 .profile-push .info-box{
     padding: 10px;
     border: 1px solid var(--tertiary);
-    background-color: var(--background);
-    color: var(--tertiary);
+    background-color: var(--tertiary-container);
+    color: var(--tertiary-background);
     margin-left: auto;
     margin-right: auto;
     max-width: 300px;
-    border-radius: 30px;
+    border-radius: 20px;
     margin-bottom: 20px;
     box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px; 
 }
