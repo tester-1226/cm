@@ -55,6 +55,10 @@
     color: var(--secondary-container);
 }
 
+.nav-button:last-of-type{
+    margin-right: 10px;
+}
+
 .grid-center{
     transform: translateY(4px);
     margin-left: 10px;

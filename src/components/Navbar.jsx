@@ -36,38 +36,29 @@ const Navbar = () => {
                             Heroes
                         </span>
                     </div>
-                    <button class = "nav-button" onClick={(e) => navigate("/events")}>
-                        Events
-                    </button>
-                    {
-                        loggedIn &&
-                        <div class = "navbar-flex">
-                            <button class = "nav-button" onClick={(e) => navigate("/add-events")}>
-                                Add
-                            </button>
-                            
-                        </div>
-                    }
-                    {
-                        (!loggedIn) &&
-                        <div class = "navbar-flex">
-                            <button class = "nav-button" onClick={(e) => navigate("/login")}>
-                                Login
-                            </button>
-                            <button class = "nav-button" onClick={(e) => navigate("/register")}>
-                                Register
-                            </button>
-                        </div>
-                    }
                 </div>
                 {
                     loggedIn &&
                     <div className="right">
+                        <button class = "nav-button" onClick={(e) => navigate("/add-event")}>
+                            Add
+                        </button>
                         <button class = "nav-button" onClick={(e) => navigate("/profile")}>
                             My Events
                         </button>
                         <button class = "nav-button" onClick={(e) => handleLogout()}>
                             Logout
+                        </button>
+                    </div>
+                }
+                {
+                    (!loggedIn) &&
+                    <div class = "navbar-flex right">
+                        <button class = "nav-button" onClick={(e) => navigate("/login")}>
+                            Login
+                        </button>
+                        <button class = "nav-button" onClick={(e) => navigate("/register")}>
+                            Register
                         </button>
                     </div>
                 }
