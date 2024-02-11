@@ -32,7 +32,7 @@ const AddEvent = () => {
     };
 
     const handleSubmit = () => {
-        const eventsRef = ref(db, 'events');
+        const eventsRef = ref(db, 'events/' + userUid);
         push(eventsRef, eventData)
             .then(() => {
                 message.success("Event added successfully!");
