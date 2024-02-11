@@ -93,6 +93,7 @@ function Profile(props) {
                 </div>
                 }
             </div>
+            <div className="separator"></div>
         </div>
         </div>
     );

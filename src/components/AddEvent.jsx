@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import '../css/addEvent.css'
+import '../css/form.css'
 import Navbar from './Navbar';
 import { db } from '../firebase_setup/firebase.js'
 import { ref, push, child, update } from "firebase/database";
@@ -46,6 +47,16 @@ const AddEvent = () => {
 
     return (
         <div>
+            <div className="form-wrapper">
+        <div className="form">
+        <div style={{marginBottom: "40px"}} className = "form-logo" onClick={(e) => navigate("/")}>
+                        <span className = "community">
+                            Community
+                        </span>
+                        <span className = "heros">
+                            Heroes
+                        </span>
+                    </div>
             <Form onFinish={handleSubmit}>
                 <Form.Item label="Description">
                     <Input type="text" name="description" value={eventData.description} onChange={handleChange} />
@@ -66,6 +77,8 @@ const AddEvent = () => {
                     <Button type="primary" htmlType="submit">Create Event</Button>
                 </Form.Item>
             </Form>
+            </div>
+            </div>
         </div>
     );
 };
