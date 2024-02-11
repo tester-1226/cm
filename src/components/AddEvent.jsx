@@ -31,8 +31,13 @@ const AddEvent = (props) => {
             </br>
             <div>
                 <label>
-                    ≈ç
+                Event Description
                 </label>
+                <br>
+                </br>
+                <textarea rows="4" cols="50" class="form-resize">
+
+                </textarea>
             </div>
             <br>
             </br>
