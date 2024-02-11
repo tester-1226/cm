@@ -29,6 +29,13 @@ const AddEvent = (props) => {
                 Create An Event
             </h1>
             <div>
+                <button class = "form-eventImage-button">
+                    Event Image
+                </button>
+            </div>
+            <br>
+            </br>
+            <div>
                 <label for="eventName">Event name:</label>
                 <input type="text" id="eventName" name="eventName"></input>
             </div>
@@ -40,7 +47,7 @@ const AddEvent = (props) => {
             </div>
             <br>
             </br>
-            <div>
+            <div class = "form-userPadding">
                 <label for="userName">Username:</label>
                 <input type="text" id="userName" name="userName"></input>
                 <label for="date">Date:</label>
@@ -51,9 +58,14 @@ const AddEvent = (props) => {
             <br>
             </br>
             <div>
-                <label>
-                    ≈ç
+                <label for="eventDescirption">Event Description
+                    
                 </label>
+                <br>
+                </br>
+                <textarea rows = "4" cols = "50"class = "form-resize">
+
+                </textarea>
             </div>
             <br>
             </br>
