@@ -53,7 +53,7 @@ const EventListCreated = (props) => {
                             [{event.location}] - [{event.date}] - [{event.time}]
                         </div>
                         <button class = "small-material-button rsvp-button">
-                            RSVP
+                            Delete
                         </button>
                     </div>
                 </div>

@@ -69,7 +69,7 @@ const EventListAttending = (props) => {
                             [{event.location}] - [{event.date}] - [{event.time}]
                         </div>
                         <button class = "small-material-button rsvp-button">
-                            RSVP
+                            Cancel
                         </button>
                     </div>
                 </div>
