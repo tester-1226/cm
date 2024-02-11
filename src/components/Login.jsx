@@ -5,18 +5,22 @@ import { signInWithEmailAndPassword, signOut, sendEmailVerification } from 'fire
 import { db } from '../firebase_setup/firebase.js'
 import { ref, push, child, update } from "firebase/database";
 import { auth } from '../firebase_setup/firebase';
-
+import { Form, Input, Checkbox, Button } from 'antd';
 import { message } from 'antd';
+import Cookies from 'js-cookie';
 
 
-const Login = (props) => {
+function Login() {
     const navigate = useNavigate();
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
-
-    const onLogin = (e) => {
-        e.preventDefault();
-        signInWithEmailAndPassword(auth, email, password)
+    const secretPass = "XkhZG4fW2t2W";
+    const handleSubmit = (e) => {
+        let obj = {
+            uid: '',
+            name: e.name,
+            email: e.email,
+            password: e.password,
+        }
+        signInWithEmailAndPassword(auth, e.email, e.password)
             .then((userCredential) => {
                 // Signed in
                 /*var lgDate = new Date();
@@ -26,11 +30,11 @@ const Login = (props) => {
 
                 const user = userCredential.user;
                 if (user.emailVerified) {
-                    navigate("/")
                     //console.log(user);
                     //console.log(props.state)
-                    props.changeLoginState(true, user.uid)
+                    Cookies.set('token', user.uid, {expires:1});
                     message.success("Signed in as " + user.email)
+                    navigate("/");
                 } else {
                     sendEmailVerification(user)
                     signOut(auth).then(() => {
@@ -49,56 +53,73 @@ const Login = (props) => {
             });
 
     }
+        
+
     return (
-        <div className="poo">
-            <main >
-                <section>
-                    <div>
-
-                        <form>
-                            <div className="username">
-                                <label htmlFor="email-address">
-                                    Email address
-                                </label>
-                                <input
-                                    id="email-address"
-                                    name="email"
-                                    type="email"
-                                    required
-                                    placeholder="Email address"
-                                    onChange={(e) => setEmail(e.target.value)}
-                                />
-                            </div>
-
-                            <div className="password">
-                                <label htmlFor="password">
-                                    Password
-                                </label>
-                                <input
-                                    id="password"
-                                    name="password"
-                                    type="password"
-                                    required
-                                    placeholder="Password"
-                                    onChange={(e) => setPassword(e.target.value)}
-                                />
-                            </div>
-
-
-                            <div>
-                                <p class='text'>Dont have an account? Sign up <NavLink to="/register">
-                                    Sign up
-                                </NavLink></p>
-                                <p class='text'><a href='/login/forgotpassword'>Forgot your password?</a></p>
-                            </div>
-                            <NavLink to="/" ><button type="submit" onClick={onLogin}><a href='#'>Sign in</a></button></NavLink>
-                        </form>
-
+        <div className="form-wrapper">
+        <div className="form">
+        <div className = "form-logo" onClick={(e) => navigate("/")}>
+                        <span className = "community">
+                            Community
+                        </span>
+                        <span className = "heros">
+                            Heroes
+                        </span>
                     </div>
-                </section>
-            </main>
+            <Form
+                name="registration"
+                style={{
+                    maxWidth: 700,
+                }}
+                onFinish={handleSubmit}
+                autoComplete="off"
+                method='POST'
+                scrollToFirstError
+            >
+                <div className="form-section">
+                    <div className="form-row">
+                    <div className="form-row">
+                        <Form.Item
+                            name="email"
+                            rules={[
+                                {
+                                    type: 'email',
+                                    message: 'Not a valid email',
+                                },
+                                {
+                                    required: true,
+                                    message: 'Please input your email',
+                                },
+                            ]}
+                        >
+                            <Input placeholder="Email*" />
+                        </Form.Item>
+                    </div>
+                    <div className="form-row">
+                        <Form.Item
+                            name="password"
+                            rules={[
+                                {
+                                    required: true,
+                                    message: 'Please input your password!',
+                                },
+                            ]}
+                            hasFeedback
+                        >
+                            <Input.Password placeholder="Password*" />
+                        </Form.Item>
+                    </div>
+                        <Button type="primary" htmlType="submit">
+                            Login
+                        </Button>
+                    </div>
+
+                </div>
+            </Form>
+        </div>
         </div>
     )
 }
+
 
 export default Login

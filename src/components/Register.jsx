@@ -4,9 +4,11 @@ import { ref, push, child, update } from "firebase/database";
 import { getAuth, createUserWithEmailAndPassword, sendEmailVerification } from "firebase/auth";
 import { message, Form, Input, Checkbox, Button } from 'antd';
 import '../css/form.css';
+import { useNavigate } from "react-router-dom";
 // import bcrypt from 'bcryptjs';
 import CryptoJS from 'crypto-js'; 
 function Register() {
+    const navigate = useNavigate();
     const secretPass = "XkhZG4fW2t2W";
     const handleSubmit = (e) => {
         let obj = {
@@ -51,9 +53,16 @@ function Register() {
     }
 
     return (
+        <div className="form-wrapper">
         <div className="form">
-            <div class="section-title">Register an Account</div>
-            <div>Fields marked with an * are required.</div>
+        <div className = "form-logo" onClick={(e) => navigate("/")}>
+                        <span className = "community">
+                            Community
+                        </span>
+                        <span className = "heros">
+                            Heroes
+                        </span>
+                    </div>
             <Form
                 name="registration"
                 style={{
@@ -65,7 +74,6 @@ function Register() {
                 scrollToFirstError
             >
                 <div className="form-section">
-                    <div className="section-title-minor">Personal Information</div>
                     <div className="form-row">
                         <Form.Item
                             name="name"
@@ -140,7 +148,7 @@ function Register() {
                 </div>
             </Form>
         </div>
-
+        </div>
     )
 }
 
