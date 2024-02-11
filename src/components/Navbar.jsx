@@ -63,7 +63,7 @@ const Navbar = () => {
                 {
                     loggedIn &&
                     <div className="right">
-                        <button class = "nav-button" onClick={(e) => navigate("/add-events")}>
+                        <button class = "nav-button" onClick={(e) => navigate("/profile")}>
                             My Events
                         </button>
                         <button class = "nav-button" onClick={(e) => handleLogout()}>

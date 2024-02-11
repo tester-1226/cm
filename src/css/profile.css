@@ -27,4 +27,8 @@
     font: inherit;
     min-height: 48px;
     min-width: 48px;
-  }
+}
+
+.profile-push{
+    margin-top: 50px;
+}

@@ -5,6 +5,8 @@ import CryptoJS from 'crypto-js';
 import { Form } from 'antd'; // Ensure you import Form from 'antd' if you haven't already
 import Navbar from './Navbar';
 
+import "../css/profile.css"
+
 function Profile(props) {
     const secretPass = "XkhZG4fW2t2W";
     const [form] = Form.useForm();
@@ -47,7 +49,7 @@ function Profile(props) {
     }, [form]);
 
     return (
-        <div>
+        <div className = "profile-push">
             <Navbar />
             <div align="center">
                 <button className="form-larger-button">
