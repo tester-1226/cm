@@ -29,9 +29,9 @@ function Login() {
                 })*/
 
                 const user = userCredential.user;
-                    Cookies.set('token', user.uid, {expires:1});
-                    message.success("Signed in as " + user.email)
-                    navigate("/")
+                Cookies.set('token', user.uid, {expires:1});
+                message.success("Signed in as " + user.email)
+                navigate("/")
             })
             .catch((error) => {
                 const errorCode = error.code;
