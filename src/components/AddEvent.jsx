@@ -6,11 +6,13 @@ import { ref, push, child, update } from "firebase/database";
 import { getAuth, createUserWithEmailAndPassword, sendEmailVerification } from "firebase/auth";
 import { message, Form, Input, Checkbox, Button } from 'antd';
 import { useNavigate } from "react-router-dom";
+import Cookies from 'js-cookie';
 
 
 const AddEvent = () => {
     const navigate = useNavigate();
     const [eventData, setEventData] = useState({
+        uid: '',
         description: '',
         name: '',
         location: '',
@@ -18,13 +20,19 @@ const AddEvent = () => {
         time: ''
     });
 
+    const userUid = Cookies.get('token');
+    console.log(userUid)
+    console.log(eventData);
+    eventData["uid"] = userUid;
+    console.log()
+
     const handleChange = (e) => {
         const { name, value } = e.target;
         setEventData({ ...eventData, [name]: value });
     };
 
     const handleSubmit = () => {
-        const eventsRef = ref(db, 'events');
+        const eventsRef = ref(db, '/events/' + userUid);
         push(eventsRef, eventData)
             .then(() => {
                 message.success("Event added successfully!");
