@@ -1,40 +1,12 @@
 import React from 'react'
 import '../css/addEvent.css'
 import Navbar from './Navbar';
-import { db } from '../firebase_setup/firebase.js'
-import { ref, push, child, update } from "firebase/database";
-import { getAuth, createUserWithEmailAndPassword, sendEmailVerification } from "firebase/auth";
-import { message, Form, Input, Checkbox, Button } from 'antd';
-import { useNavigate } from "react-router-dom";
-
-
 const AddEvent = (props) => {
-
-    const navigate = useNavigate();
-    const handleSubmit = (e) => {
-        let obj = {
-            uid: '',
-            description: e.description,
-            name: e.name,
-            location: e.location,
-            date: e.date,
-            time: e.time
-        }
-    }
-
-
     return (
         <div align = "center">
             <h1>
                 Create An Event
             </h1>
-            <div>
-                <button class = "form-eventImage-button">
-                    Event Image
-                </button>
-            </div>
-            <br>
-            </br>
             <div>
                 <label for="eventName">Event name:</label>
                 <input type="text" id="eventName" name="eventName"></input>
@@ -47,7 +19,7 @@ const AddEvent = (props) => {
             </div>
             <br>
             </br>
-            <div class = "form-userPadding">
+            <div>
                 <label for="userName">Username:</label>
                 <input type="text" id="userName" name="userName"></input>
                 <label for="date">Date:</label>
@@ -58,14 +30,9 @@ const AddEvent = (props) => {
             <br>
             </br>
             <div>
-                <label for="eventDescirption">Event Description
-                    
+                <label>
+                    ≈ç
                 </label>
-                <br>
-                </br>
-                <textarea rows = "4" cols = "50"class = "form-resize">
-
-                </textarea>
             </div>
             <br>
             </br>

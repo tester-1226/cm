@@ -35,24 +35,16 @@ function Register() {
                 const user = userCredential.user;
                 message.success("Registration success!")
                 obj["uid"] = user.uid;
-                const userId = user.uid;
-                db.ref('user/' + userId).set({
-                    name: username,
-                    email: email,
-                    password: encryptedPassword
-                });
-
-                // Push user data to Firebase Realtime Database
-                const dbRef = ref(db);
-                push(ref(db))
-                .then(() => {
-                    console.log("User data added to the database");
-                    // If you want to redirect after successful registration
-                    setRedirectHome(true);
-                })
-                .catch((error) => {
-                    console.error("Error adding user data to the database: ", error);
-                });
+                sendEmailVerification(user)
+                    .then(() => {
+                        message.success("A confirmation email has been sent to your email address.")
+                        updates['/users/' + obj["uid"]] = obj;
+                        return update(ref(db), updates);
+                    })
+                    .catch((error) => {
+                        //message.error("We could not send the verification email - contact an admin")
+                        message.error(error.message)
+                    });
             })
             .catch((error) => {
                 message.error(error.message)
