@@ -3,32 +3,16 @@ import Cookies from 'js-cookie';
 import "../css/global.css";
 import Leaves from "../images/material_leaves.jpg";
 
-const EventList = (props) => {
+const EventListCreated = (props) => {
     const eArray = [
-        {
-            "date": "2025-01-01",
-            "description": "testEvent",
-            "location": "EventLocation",
-            "name": "EventName",
-            "time": "23:59",
+            {
+            "date": "2024-03-12",
+            "description": "Come join us on a tree plantation drive across town , to help make the world a better place to live and breathe for the future generations",
+            "location": "Athens",
+            "name": "Trees Matter",
+            "time": "07:30",
             "uid": "LZx2cXcdVteKGwltsdWxj0tDoZG3"
-        },
-        {
-            "date": "2025-12-12",
-            "description": "testEvent2",
-            "location": "EventLocation2",
-            "name": "EventName2",
-            "time": "12:00",
-            "uid": "LZx2cXcdVteKGwltsdWxj0tDoZG3"
-          },
-        {
-        "date": "2026-06-02",
-        "description": "abcDesc",
-        "location": "abcLocation",
-        "name": "abcEvent",
-        "time": "18:06",
-        "uid": "VomvuRSE3eUKhZMMjlNNp9jUqeZ2"
-        },
+            }
     ];
     const [events, setEvents] = useState('');
 
@@ -50,7 +34,7 @@ const EventList = (props) => {
     return (
         <div className="list-container">
             <div className="list-title">
-                Upcoming Events
+                Events You Created
             </div>
             <div class = "material-listwrapper">
                 {itemsArr.map((event) => 
@@ -79,4 +63,4 @@ const EventList = (props) => {
     );
 }
 
-export default EventList;
+export default EventListCreated;

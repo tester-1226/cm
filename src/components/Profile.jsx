@@ -5,12 +5,16 @@ import CryptoJS from 'crypto-js';
 import { Form } from 'antd'; // Ensure you import Form from 'antd' if you haven't already
 import Navbar from './Navbar';
 import Jake from "../images/jake.jpg"
+import EventListAttending from './EventListAttending';
+import EventListCreated from './EventListCreated';
 
 import "../css/profile.css"
+import { SHOW_ALL } from 'rc-tree-select';
 
 function Profile(props) {
     const secretPass = "XkhZG4fW2t2W";
     const [form] = Form.useForm();
+    const [show, setShow] = useState(false);
     const [profile, setProfile] = useState({
         uid: '',
         name: '',
@@ -60,7 +64,7 @@ function Profile(props) {
                 </button>
             </div>
 
-            <div className="info">
+            <div className="pinfo">
                 <div className='info-box' align="center">
                     <p>
                         Email: {profile.email}
@@ -73,8 +77,21 @@ function Profile(props) {
                 </div>
             </div>
 
-            <div className='' align="center">
-                {/* List Component */}
+            <div className='tablist' align="center">
+                <div className="tabs">
+                    <button onClick={(e) => {setShow(false)}}>Created</button>
+                    <button onClick={(e) => {setShow(true)}}>Attending</button>
+                </div>
+                { show &&
+                <div className="attending">
+                    <EventListAttending />
+                </div>
+                }
+                { (!show) &&
+                <div className="created">
+                    <EventListCreated />
+                </div>
+                }
             </div>
         </div>
         </div>
