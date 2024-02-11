@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import Cookies from 'js-cookie';
 import "../css/global.css";
 import Leaves from "../images/material_leaves.jpg";
+import { message } from 'antd';
 
 const EventList = (props) => {
     const eArray = [
@@ -124,7 +125,7 @@ const EventList = (props) => {
                         <div class="bottom">
                             [{event.location}] - [{event.date}] - [{event.time}]
                         </div>
-                        <button class = "small-material-button rsvp-button">
+                        <button class = "small-material-button rsvp-button" onClick={(e) => {message.success("Successfully RSVP'd")}}>
                             RSVP
                         </button>
                     </div>
