@@ -48,7 +48,7 @@ const AddEvent = () => {
     return (
         <div>
             <div className="form-wrapper">
-        <div className="form">
+        <div style={{minWidth: "400px"}} className="form">
         <div style={{marginBottom: "40px"}} className = "form-logo" onClick={(e) => navigate("/")}>
                         <span className = "community">
                             Community
