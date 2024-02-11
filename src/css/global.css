@@ -61,17 +61,32 @@ body{
     outline: none;
 }
 
-.material-listwrapper{
+.list-container{
+    margin-top: 130px;
     width: 80%;
     margin-left: auto;
     margin-right: auto;
-    margin-top: 200px;
+    max-width: 900px;
+}
+
+.list-title{
+    text-align: center;
+    padding: 20px;
+    font-size: 30px;
+    margin-bottom: 20px;
+    background-color: var(--background);
+    color: var(--primary);
+    border-radius: 20px;
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+}
+
+.material-listwrapper{
     background-color: var(--primary-container);
     border-radius: 20px;
     height: fit-content;
     padding: 10px;
     padding-bottom: 4px;
-    max-width: 900px;
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
 }
 
 .material-eventbox{
