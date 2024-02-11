@@ -29,20 +29,9 @@ function Login() {
                 })*/
 
                 const user = userCredential.user;
-                if (user.emailVerified) {
-                    //console.log(user);
-                    //console.log(props.state)
                     Cookies.set('token', user.uid, {expires:1});
                     message.success("Signed in as " + user.email)
-                    navigate("/");
-                } else {
-                    sendEmailVerification(user)
-                    signOut(auth).then(() => {
-                        message.error("Your email is not verified! Resending verification email.")
-                    }).catch((error) => {
-                        message.error(error.message)
-                    });
-                }
+                    navigate("/")
             })
             .catch((error) => {
                 const errorCode = error.code;
